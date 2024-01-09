@@ -2,10 +2,12 @@ package com.blackpearl.qa.technical.test.appconfig;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Data
 @Component
+@Configuration
 public class BlackPearlConfig {
     @Value("${spring.service.blackPearl.getNeraPerla}")
     private String getNeraPerla;

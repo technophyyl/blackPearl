@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.context.annotation.ComponentScan;
 
 @RunWith(CucumberWithSerenity.class)
-@ComponentScan({"com.blackpearl.*"})
+@ComponentScan({"com.*"})
 @CucumberOptions(
         features = {"src/test/resources/features"},
         dryRun = false,

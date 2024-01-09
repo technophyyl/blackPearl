@@ -2,32 +2,38 @@ package com.blackpearl.qa.technical.test.glue;
 
 import com.blackpearl.qa.technical.test.appconfig.BlackPearlConfig;
 import com.blackpearl.qa.technical.test.browserUtill.OpenChromeBrowser;
+import groovy.util.logging.Log4j2;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@Log4j2
 public class blackPearlQaTechnicalTestStefDef {
     WebDriver browser;
     @Autowired
     OpenChromeBrowser openChromeBrowser;
     @Autowired
-    BlackPearlConfig blackPearlConfig;
+    private BlackPearlConfig blackPearlConfig;
     protected SoftAssertions softAssertions = new SoftAssertions();
 
 
     @When("Load the login page.")
     public void load_the_login_page() {
-        openChromeBrowser.openChromeBrowser();
+        browser= openChromeBrowser.openChromeBrowser();
         browser.get(blackPearlConfig.getGetNeraPerla());
 
     }
@@ -90,6 +96,5 @@ public class blackPearlQaTechnicalTestStefDef {
         softAssertions.assertThat(blackPearlConfig.getUserName()).as("").isEqualTo(loadedUserEmail.getText());
 
     }
-
 
 }
